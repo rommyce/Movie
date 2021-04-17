@@ -16,8 +16,8 @@ import SwiftUI
  - parameter isDisabled: State of button.
  
  # Notes: #
- 1. Parameters colorScheme nos mandatory if tha app will not have dark mode
- 2. Parameters isDisabled nos mandatory if tha button will not disable
+ 1. Parameters colorScheme nos mandatory if tha app will not have dark mode.
+ 2. Parameters isDisabled nos mandatory if tha button will not disable.
  
  # Example #
  ```

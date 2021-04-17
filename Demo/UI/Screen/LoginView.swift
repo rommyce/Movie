@@ -12,8 +12,11 @@ struct LoginView: View {
     @State var username : String = ""
     @State var password : String = ""
     @State var isDisabled : Bool = true
+    @State var isSecureTextEntry : Bool = true
+    @State var fieldFocus = [false, false]
     
     @ObservedObject var viewModel = LoginViewModel()
+    
     @Environment(\.colorScheme) var colorScheme
     
     let LOGIN_CONTAINER_WIDTH = 300
@@ -22,7 +25,9 @@ struct LoginView: View {
         ZStack{
             VStack{
                 Spacer().frame(maxWidth: .infinity)
+                
                 LoginContainer()
+                
                 Spacer().frame(height:50)
             }
             .frame(maxWidth: CGFloat(LOGIN_CONTAINER_WIDTH), alignment: .center)
@@ -42,26 +47,40 @@ struct LoginView: View {
                 .frame(width: UIScreen.main.bounds.width, height: UIScreen.main.bounds.height, alignment: .center)
                 .overlay(Color("background").opacity(0.2))
                 .ignoresSafeArea()
-                
-                
         }
     }
 
     fileprivate func UserTextField() -> some View {
-        return TextField("lbl_user", text: $username)
-            .onChange(of: username, perform: { value in
-                isDisabled = !isValidForm()
-            })
-            .textFieldStyle(LoginTextfieldStyle())
-            .keyboardType(.emailAddress)
+        let label = LocalizedStringKey("lbl_user").toString()
+
+        return KitTextField (
+                        label: "\(label)",
+                        text: $username,
+                        focusable: $fieldFocus,
+                        returnKeyType: .next,
+                        tag: 0
+        )
+        .frame(height: CGFloat(TEXTFIELD_HEIGHT_STAND))
+        .onChange(of: username, perform: { value in
+                                isDisabled = !isValidForm()
+        })
     }
     
     fileprivate func PasswordTextField() -> some View {
-        return SecureField("lbl_password", text: $password)
-            .onChange(of: password, perform: { value in
-                isDisabled = !isValidForm()
-            })
-            .textFieldStyle(LoginTextfieldStyle())
+        let label = LocalizedStringKey("lbl_password").toString()
+        
+        return KitTextField (
+                        label: "\(label)",
+                        text: $password,
+                        focusable: $fieldFocus,
+                        isSecureTextEntry: $isSecureTextEntry,
+                        returnKeyType: .done,
+                        tag: 1
+        )
+        .frame(height: CGFloat(TEXTFIELD_HEIGHT_STAND))
+        .onChange(of: password, perform: { value in
+                                isDisabled = !isValidForm()
+        })
     }
     
     fileprivate func LoginButton() -> some View {
@@ -74,24 +93,32 @@ struct LoginView: View {
         .fullScreenCover(isPresented: $viewModel.success, content: {
             HomeView()
         })
-        
+        .alert(isPresented: $viewModel.showErrorAlert, content: {
+            Alert(title: Text(viewModel.error!.localizedDescription))
+        })
     }
     
     fileprivate func LoginContainer() -> some View {
         return VStack(){
             UserTextField()
+            
             PasswordTextField()
+            
             LoginButton()
         }
         .padding(25)
         .background(Color("background"))
         .cornerRadius(CGFloat(RADIUS_STAND))
         .modifier(AdaptsToSoftwareKeyboard())
+        .opacity(0.95)
     }
     
     func validLoginWS(){
-        viewModel.login(user: username, password: password)
+        if(!isDisabled){
+            viewModel.login(user: username, password: password)
+        }
     }
+    
     
     func isValidForm() -> Bool{
         (username.count != 0 && password.count != 0)

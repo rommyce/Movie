@@ -8,3 +8,4 @@
 import Foundation
 
 let RADIUS_STAND = 20
+let TEXTFIELD_HEIGHT_STAND = 40

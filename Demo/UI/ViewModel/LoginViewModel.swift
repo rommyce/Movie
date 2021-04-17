@@ -9,7 +9,7 @@ import Foundation
 
 class LoginViewModel: ObservableObject {
     
-    @Published var success: Bool = false
+    @Published var loginResponse: LoginResponse = LoginResponse(success: false, message: "")
     @Published var messsage: String = ""
     @Published var showErrorAlert: Bool = false
     @Published var error: Error?{
@@ -20,13 +20,11 @@ class LoginViewModel: ObservableObject {
     
     func login(user: String, password: String){
         let service = LoginService()
-        service.login(user: user, password: password) { (userDTO) in
-            self.showErrorAlert = false
-            self.success = userDTO.success
-            self.messsage = userDTO.message
+        service.login(user: user, password: password) { (response) in
+            self.loginResponse = response
         } failure: { (error) in
+            self.error = error
             self.messsage = error.localizedDescription
-            self.showErrorAlert = true
         }
     }
 }
