@@ -6,7 +6,9 @@ target 'Demo' do
   use_frameworks!
 
   # Pods for Demo
-
+  pod 'Alamofire', '~> 5.2'
+  pod 'FloatingLabelTextFieldSwiftUI'
+  
   target 'DemoTests' do
     inherit! :search_paths
     # Pods for testing

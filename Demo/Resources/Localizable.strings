@@ -5,3 +5,8 @@
   Created by Rommy Fuentes Davila Otani on 16/04/21.
   
 */
+
+"lbl_user" = "Usuario";
+"lbl_password" = "Contraseña";
+"btn_login" = "INGRESAR";
+
