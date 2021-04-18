@@ -90,7 +90,7 @@ struct LoginView: View {
             Text("btn_login")
         })
         .buttonStyle(LoginButtonStyle(startColor: Color.yellow, endColor: Color.orange, colorScheme: colorScheme, isDisabled: isDisabled))
-        .fullScreenCover(isPresented: $viewModel.success, content: {
+        .fullScreenCover(isPresented: $viewModel.loginResponse.success, content: {
             HomeView()
         })
         .alert(isPresented: $viewModel.showErrorAlert, content: {
