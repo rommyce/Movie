@@ -11,19 +11,22 @@ import Alamofire
 typealias ReturnListMovieClosure = (ListMovieResponse) -> Void
 
 struct MovieService {
-    /*
+    
     func listMovie(page: Int = 1,
                    success: @escaping ReturnListMovieClosure,
                    failure: @escaping ErrorClosure){
 
-        let mainUrl = "https://api.themoviedb.org/3/"
-        let apiKEy = "f46b58478f489737ad5a4651a4b25079"
-        
-        if(true){
-            success(ListMovieResponse(success: true, message: "Bienvenido!"))
-        }else{
-            failure(CustomError.invalidData)
+        let url = "\(mainUrl)movie/upcoming?page=\(page)&api_key=\(apiKEy)"
+        let request = AF.request(url, method: .get)
+        request.validate().responseDecodable(of: ListMovieResponse.self) { response in
+            switch response.result{
+                case .failure(let error):
+                    print(error.localizedDescription)
+                    failure(error)
+                case .success(let response):
+                    success(response)
+            }
         }
-    }*/
+    }
 }
 

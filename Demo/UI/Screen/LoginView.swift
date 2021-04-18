@@ -41,11 +41,11 @@ struct LoginView: View {
     
     struct Background: View {
         var body: some View {
-            Image("background")
+            Image("login_background")
                 .resizable()
                 .scaledToFill()
                 .frame(width: UIScreen.main.bounds.width, height: UIScreen.main.bounds.height, alignment: .center)
-                .overlay(Color("background").opacity(0.2))
+                .overlay(Color.background.opacity(0.2))
                 .ignoresSafeArea()
         }
     }
@@ -60,7 +60,7 @@ struct LoginView: View {
                         returnKeyType: .next,
                         tag: 0
         )
-        .frame(height: CGFloat(TEXTFIELD_HEIGHT_STAND))
+        .frame(height: CGFloat(values.textfield_height))
         .onChange(of: username, perform: { value in
                                 isDisabled = !isValidForm()
         })
@@ -77,7 +77,7 @@ struct LoginView: View {
                         returnKeyType: .done,
                         tag: 1
         )
-        .frame(height: CGFloat(TEXTFIELD_HEIGHT_STAND))
+        .frame(height: CGFloat(values.textfield_height))
         .onChange(of: password, perform: { value in
                                 isDisabled = !isValidForm()
         })
@@ -107,8 +107,8 @@ struct LoginView: View {
             LoginButton()
         }
         .padding(25)
-        .background(Color("background"))
-        .cornerRadius(CGFloat(RADIUS_STAND))
+        .background(Color.background)
+        .cornerRadius(CGFloat(values.radius))
         .modifier(AdaptsToSoftwareKeyboard())
         .opacity(0.95)
     }

@@ -31,7 +31,7 @@ struct NavigationBarModifier: ViewModifier {
             content
             VStack {
                 GeometryReader { geometry in
-                    Color(self.backgroundColor ?? .clear)
+                        Color(self.backgroundColor ?? .clear)
                         .frame(height: geometry.safeAreaInsets.top)
                         .edgesIgnoringSafeArea(.top)
                     Spacer()
