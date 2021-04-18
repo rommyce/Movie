@@ -1,3 +1,20 @@
-PODFILE CHECKSUM: 0ee4e6d02122aaf0cdf0453f1f0648910ba065d7
+PODS:
+  - Alamofire (5.4.2)
+  - FloatingLabelTextFieldSwiftUI (4.1.0)
+
+DEPENDENCIES:
+  - Alamofire (~> 5.2)
+  - FloatingLabelTextFieldSwiftUI
+
+SPEC REPOS:
+  trunk:
+    - Alamofire
+    - FloatingLabelTextFieldSwiftUI
+
+SPEC CHECKSUMS:
+  Alamofire: bfbc4c2fe5909b1d94fb4ef2277c6b3727ef5dae
+  FloatingLabelTextFieldSwiftUI: 4497808322db47a4c7509e65de64d812f5ebfab1
+
+PODFILE CHECKSUM: 6023a4843db4f68dbcda5815d12b73f3880f38ee
 
 COCOAPODS: 1.10.1
