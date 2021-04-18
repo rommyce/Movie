@@ -10,7 +10,6 @@ import Foundation
 class LoginViewModel: ObservableObject {
     
     @Published var loginResponse: LoginResponse = LoginResponse(success: false, message: "")
-    @Published var messsage: String = ""
     @Published var showErrorAlert: Bool = false
     @Published var error: Error?{
         didSet{
@@ -24,7 +23,6 @@ class LoginViewModel: ObservableObject {
             self.loginResponse = response
         } failure: { (error) in
             self.error = error
-            self.messsage = error.localizedDescription
         }
     }
 }

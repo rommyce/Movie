@@ -40,7 +40,7 @@ class DemoUITests: XCTestCase {
         //Press enter button
         app.buttons["INGRESAR"].tap()
         
-        XCTAssertTrue(app.staticTexts["Hello, World!"].exists)
+        XCTAssertTrue(app.staticTexts["Lista películas"].exists)
     }
     
     func testLaunchPerformance() throws {

@@ -8,8 +8,38 @@
 import SwiftUI
 
 struct HomeView: View {
+    
+    var movies: [Movie] = [Movie(dummy: true),
+                           Movie(dummy: true),
+                           Movie(dummy: true),
+                           Movie(dummy: true),
+                           Movie(dummy: true)]
+    
+    let columns = [
+            GridItem(.flexible()),
+            GridItem(.flexible()),
+            GridItem(.flexible()),
+            GridItem(.flexible())
+        ]
+    
     var body: some View {
-        Text(/*@START_MENU_TOKEN@*/"Hello, World!"/*@END_MENU_TOKEN@*/)
+        NavigationView{
+            ScrollView(.vertical, showsIndicators: false) {
+                ForEach(0..<cell.row){ i in
+                    HStack(alignment: .center, spacing: cell.spacing){
+                        ForEach(0..<cell.column){ j in
+                            CollectionViewCell(row: i, column: j)
+                        }
+                        
+                    }
+                    .padding(.bottom, 10)
+                    .padding(.top, 10)
+                }
+            }
+            .navigationBarTitle("list_movie", displayMode: .inline)
+            .navigationBarColor(.orange)
+            
+        }
     }
 }
 
