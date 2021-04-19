@@ -9,7 +9,7 @@ import XCTest
 @testable import Demo
 
 class DemoTests: XCTestCase {
-
+    
     override func setUpWithError() throws {
         // Put setup code here. This method is called before the invocation of each test method in the class.
     }
@@ -18,11 +18,22 @@ class DemoTests: XCTestCase {
         // Put teardown code here. This method is called after the invocation of each test method in the class.
     }
 
-    func testValidLogin() throws {
-        // This is an example of a functional test case.
-        // Use XCTAssert and related functions to verify your tests produce the correct results.
-        
-        
+    func testLogin() {
+        let service = LoginService()
+        service.login(user: "Admin", password:"Password*123") { (response) in
+            XCTAssertTrue(response.success)
+        } failure: { (error) in
+            XCTFail()
+        }
+    }
+
+    func testListMovie() {
+        let service = MovieService()
+        service.listMovie(page: 1) { (response) in
+            XCTAssertTrue(response.results.count > 0)
+        } failure: { (error) in
+            XCTFail()
+        }
     }
 
     func testPerformanceExample() throws {

@@ -12,11 +12,15 @@ typealias ReturnListMovieClosure = (ListMovieResponse) -> Void
 
 struct MovieService {
     
+    /// Service of list of movie that allow to get 20 movies per page
     func listMovie(page: Int = 1,
                    success: @escaping ReturnListMovieClosure,
                    failure: @escaping ErrorClosure){
 
-        let url = "\(mainUrl)movie/upcoming?page=\(page)&api_key=\(apiKEy)"
+        /// Url create with page number and apikey
+        let url = "\(ServiceConstant.mainUrl)movie/upcoming?page=\(page)&api_key=\(ServiceConstant.apiKEy)"
+        
+        /// Request for service
         let request = AF.request(url, method: .get)
         request.validate().responseDecodable(of: ListMovieResponse.self) { response in
             switch response.result{

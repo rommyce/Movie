@@ -7,5 +7,8 @@
 
 import Foundation
 
-let mainUrl = "https://api.themoviedb.org/3/"
-let apiKEy = "f46b58478f489737ad5a4651a4b25079"
+struct ServiceConstant{
+    static let mainUrl = "https://api.themoviedb.org/3/"
+    static let apiKEy = "f46b58478f489737ad5a4651a4b25079"
+}
+

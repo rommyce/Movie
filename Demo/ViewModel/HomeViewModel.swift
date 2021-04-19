@@ -38,5 +38,4 @@ class HomeViewModel: ObservableObject {
             self.movies = MovieDAO.shared.getAll(in: true)
         }
     }
-    
 }

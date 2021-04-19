@@ -7,14 +7,23 @@
 
 import Foundation
 
-struct Movie : Identifiable, Codable{
+struct Movie : Hashable, Codable, Identifiable {
     
     var id: Int = 0
     var poster_path: String = ""
     var title: String = ""
-    var vote_average: Double = 0.0
+    var vote_average: Double? = 0.0
     var release_date: String = ""
     var overview: String = ""
+    
+    init(id: Int, poster_path: String, title: String, vote_average: Double, release_date: String, overview: String){
+        self.id = id
+        self.poster_path = poster_path
+        self.title = title
+        self.vote_average = vote_average
+        self.release_date = release_date
+        self.overview = overview
+    }
     
     enum CodingKeys: String, CodingKey {
         case id = "id"
@@ -39,5 +48,27 @@ struct Movie : Identifiable, Codable{
             release_date = "09/11/2020"
             overview = "eer"
         }
+    }
+    
+    static func convert(from local: MovieStore) -> Movie? {
+        let id = Int(local.id)
+        let vote_average = local.vote_average 
+        let poster_path = local.poster_path ?? ""
+        let title = local.title ?? ""
+        let release_date = local.release_date ?? ""
+        let overview = local.overview ?? ""
+
+        return Movie(id: id, poster_path: poster_path, title: title, vote_average: vote_average, release_date: release_date, overview: overview)
+    }
+    
+    func convertToManagedObject() -> MovieStore {
+        let movie: MovieStore = CoreDataManager.shared.initManagedObject()
+        movie.id = Int32(self.id)
+        movie.poster_path = poster_path
+        movie.title = title
+        movie.vote_average = vote_average ?? 0.0
+        movie.release_date = release_date
+        movie.overview = overview
+        return movie
     }
 }

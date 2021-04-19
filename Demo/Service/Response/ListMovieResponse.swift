@@ -8,7 +8,6 @@
 import Foundation
 
 struct ListMovieResponse: Codable {
-    
     var page: Int = 0
     var results: [Movie] = []
     var total_pages: Int = 0

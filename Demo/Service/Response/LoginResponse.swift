@@ -7,6 +7,5 @@
 
 import Foundation
 
-class LoginResponse: BaseResponse {
-    
+class LoginResponse: BaseResponse {    
 }

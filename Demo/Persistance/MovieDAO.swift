@@ -114,6 +114,5 @@ class MovieDAO {
         let movies = locals.compactMap { (local) -> Movie? in Movie.convert(from: local) }
         return movies
     }
-    
 }
 

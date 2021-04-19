@@ -7,6 +7,18 @@
 
 import  SwiftUI
 
+/**
+ This is a modifier that can change the background color of the navigation bar.
+
+ - parameter backgroundColor: Background color
+ 
+ # Example #
+ ```
+ VStack{
+    .navigationBarColor(backgroundColor: UIColor.white)
+ }
+ ```
+ */
 struct NavigationBarModifier: ViewModifier {
         
     var backgroundColor: UIColor?

@@ -9,10 +9,12 @@ import SwiftUI
 
 extension Color {
     
+    /// Static colors used in the app
     public static let primary = Color("primary")
     public static let background = Color("background")
     public static let item_background = Color("item_background")
     
+    /// Convert Color to UIColor
     func uiColor() -> UIColor {
 
         if #available(iOS 14.0, *) {
