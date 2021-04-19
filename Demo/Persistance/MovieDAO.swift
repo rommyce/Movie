@@ -7,9 +7,9 @@
 
 import SwiftUI
 
-class MovieStorage {
+class MovieDAO {
     
-    static let shared = MovieStorage()
+    static let shared = MovieDAO()
 
     /**
      This function save the list of movies in coredata. Tha first page have to send isFirst = true to remove stored data and insert new data.
@@ -22,7 +22,7 @@ class MovieStorage {
      
      # Example #
      ```
-     MovieStorage.shared.saveAll(first: true, movies: response.results)
+     MovieDAO.shared.saveAll(first: true, movies: response.results)
      ```
      */
     func saveAll(isFirstPage isFirst:Bool, movies: [Movie]){
@@ -41,7 +41,7 @@ class MovieStorage {
      
      # Example #
      ```
-     MovieStorage.shared.save(movie: movie)
+     MovieDAO.shared.save(movie: movie)
      ```
      */
     func save(_ movie: Movie) -> Bool {
@@ -56,7 +56,7 @@ class MovieStorage {
      
      # Example #
      ```
-     MovieStorage.shared.delete(movie: movie)
+     MovieDAO.shared.delete(movie: movie)
      ```
      */
     func delete(_ movie: Movie) -> Bool {
@@ -69,7 +69,7 @@ class MovieStorage {
      
      # Example #
      ```
-     MovieStorage.shared.deleteAll()
+     MovieDAO.shared.deleteAll()
      ```
      */
     func deleteAll(){
@@ -83,7 +83,7 @@ class MovieStorage {
      
      # Example #
      ```
-     MovieStorage.shared.delete(movie: movie)
+     MovieDAO.shared.delete(movie: movie)
      ```
      */
     func get(by id: Int) -> Movie? {
@@ -102,7 +102,7 @@ class MovieStorage {
      
      # Example #
      ```
-     MovieStorage.shared.getAll(alphabeticOrder: false)
+     MovieDAO.shared.getAll(alphabeticOrder: false)
      ```
      */
     func getAll(in alphabeticOrder: Bool = false) -> [Movie] {
