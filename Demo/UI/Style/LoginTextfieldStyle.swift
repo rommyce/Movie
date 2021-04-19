@@ -20,7 +20,7 @@ struct LoginTextfieldStyle: TextFieldStyle {
     func _body(configuration: TextField<Self._Label>) -> some View {
             configuration
                 .padding(10)
-                .cornerRadius(CGFloat(RADIUS_STAND))
+                .cornerRadius(CGFloat(values.radius))
                 .overlay(VStack{Divider().offset(x: 0, y: 15)})
     }
 }

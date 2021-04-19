@@ -8,6 +8,8 @@
 import SwiftUI
 
 extension UIApplication {
+    
+    /// End state of editing
     func endEditing() {
         sendAction(#selector(UIResponder.resignFirstResponder), to: nil, from: nil, for: nil)
     }

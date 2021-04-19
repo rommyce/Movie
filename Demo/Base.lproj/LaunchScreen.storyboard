@@ -25,7 +25,7 @@
                             </imageView>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
-                        <color key="backgroundColor" name="splash"/>
+                        <color key="backgroundColor" name="primary"/>
                         <constraints>
                             <constraint firstItem="U9O-Ja-EG6" firstAttribute="centerY" secondItem="Ze5-6b-2t3" secondAttribute="centerY" id="bfK-Et-fuf"/>
                             <constraint firstItem="U9O-Ja-EG6" firstAttribute="centerX" secondItem="Ze5-6b-2t3" secondAttribute="centerX" id="mVg-Nn-8bC"/>
@@ -39,8 +39,8 @@
     </scenes>
     <resources>
         <image name="logo" width="64" height="64"/>
-        <namedColor name="splash">
-            <color red="1" green="0.57637232540000005" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        <namedColor name="primary">
+            <color red="0.97254901960784312" green="0.85882352941176465" blue="0.23529411764705882" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </namedColor>
     </resources>
 </document>

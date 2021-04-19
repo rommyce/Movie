@@ -45,7 +45,7 @@ struct LoginButtonStyle: ButtonStyle {
             .padding()
             .foregroundColor(configuration.isPressed ? .gray : colorScheme == .dark ? .black : .white)
             .background(LinearGradient(gradient: Gradient(colors: [startColor, endColor]), startPoint: .leading, endPoint: .trailing))
-            .cornerRadius(CGFloat(RADIUS_STAND))
+            .cornerRadius(CGFloat(values.radius))
             .font(Font.body.bold())
             .disabled(isDisabled)
             .scaleEffect(configuration.isPressed ? 1.05 : 1.0)

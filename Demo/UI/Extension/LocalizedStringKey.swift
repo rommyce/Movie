@@ -8,9 +8,8 @@
 import SwiftUI
 
 extension LocalizedStringKey {
-    /**
-     Return localized value of thisLocalizedStringKey
-     */
+    
+    /// Return localized value of thisLocalizedStringKey
     public func toString() -> String {
         //use reflection
         let mirror = Mirror(reflecting: self)

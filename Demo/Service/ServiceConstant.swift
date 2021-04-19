@@ -7,4 +7,8 @@
 
 import Foundation
 
-let BASE_URL = "www.api-ga.kambista.com/"
+struct ServiceConstant{
+    static let mainUrl = "https://api.themoviedb.org/3/"
+    static let apiKEy = "f46b58478f489737ad5a4651a4b25079"
+}
+
