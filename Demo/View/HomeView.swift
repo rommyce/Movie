@@ -15,7 +15,7 @@ struct HomeView: View {
     
     // MARK: - Init
     init() {
-        viewModel.listMoview(inPage: 1)
+        viewModel.listMoview()
     }
 
     // MARK: - Views
@@ -52,6 +52,11 @@ struct HomeView: View {
                     .padding(10)
                     .animation(.easeInOut)
                     .transition(.move(edge: .bottom))
+                    .onAppear{
+                        if(movie == viewModel.movies.last){
+                            viewModel.listMoview()
+                        }
+                    }
                 }
             }
             .navigationBarTitle("list_movie", displayMode: .inline)
