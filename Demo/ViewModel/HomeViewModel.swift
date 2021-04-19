@@ -19,13 +19,14 @@ class HomeViewModel: ObservableObject {
             showErrorAlert = error != nil
         }
     }
-
+    var page: Int = 1
+    
     // MARK: - Method
-    func listMoview(inPage page: Int) {
+    func listMoview() {
         let service = MovieService()
-        service.listMovie(page: page) { (response) in
+        service.listMovie(page: page) { [self] (response) in
             ///For first page stored movies will removed and the new movies are inserted to coredata
-            if page == 1 {
+            if self.page == 1 {
                 self.movies = response.results
                 MovieDAO.shared.saveAll(isFirstPage: true, movies: response.results)
             ///For other pages movies are append to coredata
@@ -33,6 +34,7 @@ class HomeViewModel: ObservableObject {
                 self.movies.append(contentsOf: response.results)
                 MovieDAO.shared.saveAll(isFirstPage: false, movies: response.results)
             }
+            self.page += 1
         } failure: { (error) in
             ///If fail conexion to API, return list stored in coredata
             self.movies = MovieDAO.shared.getAll(in: true)
