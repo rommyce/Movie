@@ -9,12 +9,16 @@ import SwiftUI
 
 struct HomeView: View {
     
-    @ObservedObject var viewModel = HomeViewModel()
-
+    // MARK: - Declare
+    @ObservedObject var viewModel: HomeViewModel = HomeViewModel()
+    @Environment(\.managedObjectContext) var managedObjectContext
+    
+    // MARK: - Init
     init() {
         viewModel.listMoview(inPage: 1)
     }
 
+    // MARK: - Views
     var body: some View {
         NavigationView{
             NoSepratorList() {
@@ -30,7 +34,7 @@ struct HomeView: View {
                                 
                                 itemReleaseDate(date: movie.release_date)
                                 
-                                itemRate(rate: movie.vote_average)
+                                itemRate(rate: movie.vote_average ?? 0.0 )
                             }
                             .padding(10)
                         }
@@ -97,7 +101,7 @@ struct HomeView: View {
         .padding(10)
     }
 }
-
+#if DEBUG
 struct HomeView_Previews: PreviewProvider {
     static var previews: some View {
         Group{
@@ -108,3 +112,4 @@ struct HomeView_Previews: PreviewProvider {
         }
     }
 }
+#endif

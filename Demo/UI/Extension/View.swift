@@ -9,6 +9,7 @@ import SwiftUI
 
 extension View {
  
+    /// NavigationBar modifier to change appearance of background color
     func navigationBarColor(backgroundColor: UIColor?) -> some View {
         self.modifier(NavigationBarModifier(backgroundColor: backgroundColor))
     }

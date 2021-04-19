@@ -9,24 +9,23 @@ import SwiftUI
 
 struct LoginView: View {
     
+    // MARK: - Declare
     @State var username : String = ""
     @State var password : String = ""
     @State var isDisabled : Bool = true
     @State var isSecureTextEntry : Bool = true
     @State var fieldFocus = [false, false]
-    
     @ObservedObject var viewModel = LoginViewModel()
-    
     @Environment(\.colorScheme) var colorScheme
-    
     let LOGIN_CONTAINER_WIDTH = 300
     
+    // MARK: - Views
     var body: some View {
         ZStack{
             VStack{
                 Spacer().frame(maxWidth: .infinity)
                 
-                LoginContainer()
+                loginContainer()
                 
                 Spacer().frame(height:50)
             }
@@ -35,11 +34,11 @@ struct LoginView: View {
         }
         .ignoresSafeArea()
         .background(
-            Background()
+            loginBackground()
         )
     }
     
-    struct Background: View {
+    struct loginBackground: View {
         var body: some View {
             Image("login_background")
                 .resizable()
@@ -50,7 +49,7 @@ struct LoginView: View {
         }
     }
 
-    fileprivate func UserTextField() -> some View {
+    fileprivate func userTextField() -> some View {
         let label = LocalizedStringKey("lbl_user").toString()
 
         return KitTextField (
@@ -66,7 +65,7 @@ struct LoginView: View {
         })
     }
     
-    fileprivate func PasswordTextField() -> some View {
+    fileprivate func passwordTextField() -> some View {
         let label = LocalizedStringKey("lbl_password").toString()
         
         return KitTextField (
@@ -83,7 +82,7 @@ struct LoginView: View {
         })
     }
     
-    fileprivate func LoginButton() -> some View {
+    fileprivate func loginButton() -> some View {
         return Button(action: {
             validLoginWS()
         }, label: {
@@ -98,13 +97,13 @@ struct LoginView: View {
         })
     }
     
-    fileprivate func LoginContainer() -> some View {
+    fileprivate func loginContainer() -> some View {
         return VStack(){
-            UserTextField()
+            userTextField()
             
-            PasswordTextField()
+            passwordTextField()
             
-            LoginButton()
+            loginButton()
         }
         .padding(25)
         .background(Color.background)
@@ -113,18 +112,20 @@ struct LoginView: View {
         .opacity(0.95)
     }
     
+    // MARK: - Service
     func validLoginWS(){
         if(!isDisabled){
             viewModel.login(user: username, password: password)
         }
     }
     
-    
+    // MARK: - Methods
     func isValidForm() -> Bool{
         (username.count != 0 && password.count != 0)
     }
 }
 
+#if DEBUG
 struct LoginView_Previews: PreviewProvider {
     static var previews: some View {
         Group{
@@ -135,3 +136,4 @@ struct LoginView_Previews: PreviewProvider {
         }
     }
 }
+#endif
